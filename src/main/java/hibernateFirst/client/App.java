@@ -8,18 +8,21 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import hibernateFirst.configuration.HibernateConfiguration;
 import hibernateFirst.entity.Employee;
 
 public class App {
 
 	public static void main(String[] args) {
-		Employee emp = new Employee("Abhay", "Male", 250000);
+		Employee emp = new Employee(1, "Abhay", "Male", 250000);
 //		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 //		SessionFactory sessionFactory = cfg.buildSessionFactory();
 //		Session session = sessionFactory.openSession();
-
-		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure().build();
-		SessionFactory sessionFactory = new MetadataSources(ssr).getMetadataBuilder().build().buildSessionFactory();
+//
+//		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure().build();
+//		SessionFactory sessionFactory = new MetadataSources(ssr).getMetadataBuilder().build().buildSessionFactory();
+		
+		SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(emp);
