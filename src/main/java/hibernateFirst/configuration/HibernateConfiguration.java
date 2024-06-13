@@ -22,9 +22,6 @@ public class HibernateConfiguration {
 		MetadataSources metadataSources = new MetadataSources(ssr);
 		metadataSources.addAnnotatedClass(hibernateFirst.entity.Employee.class);
 		SessionFactory sf = metadataSources.getMetadataBuilder().build().buildSessionFactory();
-		
-		
-		
 		return sf;
 	}
 
