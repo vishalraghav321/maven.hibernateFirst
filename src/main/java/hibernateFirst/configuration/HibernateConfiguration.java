@@ -1,11 +1,13 @@
 package hibernateFirst.configuration;
 
 import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+
 
 public class HibernateConfiguration {
 	public static SessionFactory getSessionFactory()
@@ -21,6 +23,7 @@ public class HibernateConfiguration {
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().applySettings(prop).build();
 		MetadataSources metadataSources = new MetadataSources(ssr);
 		metadataSources.addAnnotatedClass(hibernateFirst.entity.Employee.class);
+		metadataSources.addAnnotatedClass(hibernateFirst.entity.Address.class);
 		SessionFactory sf = metadataSources.getMetadataBuilder().build().buildSessionFactory();
 		return sf;
 	}
