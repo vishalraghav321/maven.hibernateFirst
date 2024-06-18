@@ -18,7 +18,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		Employee emp = new Employee();
-		emp.setName("Abhishek");
+		emp.setName("Shivam");
 		emp.setGender("Male");
 		
 		Address address = new Address();
@@ -43,7 +43,7 @@ public class App {
 
 		tx.commit();
 		session.close();
-		
+		sessionFactory.close();
 		
 		
 //		Query query = session.createQuery("select sum(salary) from TCS_emp");
