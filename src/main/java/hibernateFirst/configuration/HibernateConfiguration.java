@@ -17,7 +17,7 @@ public class HibernateConfiguration {
 		prop.put(Environment.URL, "jdbc:mysql://localhost:3306/hbm");
 		prop.put(Environment.USER, "root");
 		prop.put(Environment.PASS, "root");
-		prop.put(Environment.HBM2DDL_AUTO, "update");
+		prop.put(Environment.HBM2DDL_AUTO, "create");
 		prop.put(Environment.SHOW_SQL, "true");
 		prop.put(Environment.FORMAT_SQL, "true");
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().applySettings(prop).build();

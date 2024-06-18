@@ -42,8 +42,11 @@ public class App {
 		session.persist(emp);
 
 		tx.commit();
+		
+		Employee em1 = session.get(Employee.class, 1);
+		System.out.println(em1.toString());
 		session.close();
-		sessionFactory.close();
+//		sessionFactory.close();
 		
 		
 //		Query query = session.createQuery("select sum(salary) from TCS_emp");
