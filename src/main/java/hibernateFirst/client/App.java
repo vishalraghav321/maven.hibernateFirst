@@ -1,5 +1,8 @@
 package hibernateFirst.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,35 +12,53 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import hibernateFirst.configuration.HibernateConfiguration;
+import hibernateFirst.entity.Address;
 import hibernateFirst.entity.Employee;
-import jakarta.persistence.Query;
+
 
 public class App {
 
-	@SuppressWarnings("deprecation")
+
 	public static void main(String[] args) {
-		Employee emp = new Employee(5, "Abhishek", "Male", 250000);
-//		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-//		SessionFactory sessionFactory = cfg.buildSessionFactory();
-//		Session session = sessionFactory.openSession();
-//
-//		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure().build();
-//		SessionFactory sessionFactory = new MetadataSources(ssr).getMetadataBuilder().build().buildSessionFactory();
-		
 		SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
 		Session session = sessionFactory.openSession();
-//		Transaction tx = session.beginTransaction();
-//		Query query = session.createQuery("select sum(salary) from TCS_emp");
-//		query.setFirstResult(2);
-//		query.setMaxResults(3);
 		
-		Query query = session.createQuery("update TCS_emp set name=:n where id=:i");
-//		query.setParameter("n", "Amit Kumar");
-//		query.setParameter("i", 2);
-//		query.executeUpdate();
-		System.out.println(query.getResultList());
-//		session.persist(emp);
-//		tx.commit();
+		Employee emp = new Employee();
+		emp.setName("Tarun");
+		emp.setGender("Male");
+		
+		List<Address> address = new ArrayList<>();
+		Address a1 = new Address("S-850","GZB");
+		Address a2 = new Address("H-399","GZB");
+		Address a3 = new Address("F-49A","Delhi");
+		Address a4 = new Address("H-403","Noida");
+
+		address.add(a1);
+		address.add(a2);
+		address.add(a3);
+		address.add(a4);
+		
+		a1.setEmployee(emp);
+		a2.setEmployee(emp);
+		a3.setEmployee(emp);
+		a4.setEmployee(emp);
+		
+		emp.setAddress(address);
+		
+		Transaction tx = session.beginTransaction();
+//		session.persist(a1);
+//		session.persist(a2);
+//		session.persist(a3);
+//		session.persist(a4);
+	
+		session.persist(emp);
+		
+		tx.commit();
+
+		Employee e1 = session.get(Employee.class, 1);
+		System.out.println(e1.toString());
+		System.out.println(e1.getAddress());
+		session.close();
 	}
 
 }

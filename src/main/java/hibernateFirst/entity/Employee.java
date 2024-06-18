@@ -1,23 +1,34 @@
 package hibernateFirst.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.util.List;
 
-@Entity (name = "TCS_emp")
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity (name = "employee")
 public class Employee {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String gender;
-	private int salary;
-	public Employee(int id, String name, String gender, int salary) {
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	private List<Address> address;
+	
+
+	
+	public Employee(int id, String name, String gender, List<Address> address) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
-		this.salary = salary;
+		this.address = address;
 	}
-	
+
 	public Employee() {
 		super();
 	}
@@ -40,15 +51,19 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getSalary() {
-		return salary;
+	
+
+	public List<Address> getAddress() {
+		return address;
 	}
-	public void setSalary(int salary) {
-		this.salary = salary;
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
 	}
+
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + "]";
 	}
 	
 	
