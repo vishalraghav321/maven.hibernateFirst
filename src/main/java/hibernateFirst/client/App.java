@@ -85,6 +85,18 @@ public class App {
 		session.persist(emp3);
 		
 		tx.commit();
+		
+		Employee employee = session.get(Employee.class, 1);
+		
+		System.out.println(".............................");
+		System.out.println(employee.toString());
+		System.out.println(employee.getAddress());
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		
+		Address address = session.get(Address.class, 1);
+		System.out.println(address.toString());
+		System.out.println(address.getEmployee());
+		
 	}
 
 }
