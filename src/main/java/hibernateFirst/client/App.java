@@ -30,13 +30,13 @@ public class App {
 		emp1.setGender("Male");
 		
 		Employee emp2 = new Employee();
-		emp1.setName("Tarun");
-		emp1.setGender("Male");
+		emp2.setName("Tarun");
+		emp2.setGender("Male");
 		
 		
 		Employee emp3 = new Employee();
-		emp1.setName("Abhay");
-		emp1.setGender("Male");
+		emp3.setName("Abhay");
+		emp3.setGender("Male");
 		
 		
 		
