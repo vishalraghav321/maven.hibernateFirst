@@ -1,10 +1,13 @@
 package hibernateFirst.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+
 
 
 @Entity(name = "address")
@@ -14,8 +17,8 @@ public class Address {
 	private int id;
 	private String street;
 	private String city;
-	@ManyToOne
-	private Employee employee;
+	@ManyToMany
+	private List<Employee> employee;
 	
 	
 	public Address() {
@@ -44,13 +47,15 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	
-	public Employee getEmployee() {
+	public List<Employee> getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(List<Employee> employee) {
 		this.employee = employee;
 	}
+	
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", city=" + city + "]";

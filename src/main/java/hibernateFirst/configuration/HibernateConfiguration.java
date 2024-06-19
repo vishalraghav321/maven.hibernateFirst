@@ -12,7 +12,7 @@ public class HibernateConfiguration {
 	{
 		Properties prop = new Properties();
 		prop.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-		prop.put(Environment.URL, "jdbc:mysql://localhost:3306/hbm");
+		prop.put(Environment.URL, "jdbc:mysql://localhost:3306/new_schema");
 		prop.put(Environment.USER, "root");
 		prop.put(Environment.PASS, "root");
 		prop.put(Environment.HBM2DDL_AUTO, "update");
@@ -21,6 +21,7 @@ public class HibernateConfiguration {
 		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().applySettings(prop).build();
 		MetadataSources metadataSources = new MetadataSources(ssr);
 		metadataSources.addAnnotatedClass(hibernateFirst.entity.Employee.class);
+		metadataSources.addAnnotatedClass(hibernateFirst.entity.Address.class);
 		SessionFactory sf = metadataSources.getMetadataBuilder().build().buildSessionFactory();
 		return sf;
 	}

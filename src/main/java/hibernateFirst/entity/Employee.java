@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity (name = "employee")
 public class Employee {
@@ -16,13 +16,12 @@ public class Employee {
 	private int id;
 	private String name;
 	private String gender;
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Address> address;
 	
 
 	
 	public Employee(int id, String name, String gender, List<Address> address) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
